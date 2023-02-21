@@ -12,8 +12,14 @@ public class ScannerQuiz {
 		String name = sc.next();
 		System.out.println("나이를 입력하세요:");
 		int age = sc.nextInt();
-		System.out.printf("이름: %s \n나이: %d세 \n출생년도: %d년", name, age, 2023 - age + 1);
+		System.out.printf("이름: %s\n나이: %d세\n출생년도: %d년"
+				, name, age, 2023 - age + 1);
 		sc.close();
+		
+		
+		
+		
+		
 				
 
 	}

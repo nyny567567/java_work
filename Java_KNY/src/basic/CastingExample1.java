@@ -10,7 +10,7 @@ public class CastingExample1 {
 		 (promotion, UpCasting)
 		
 		 */
-		
+		//boolean, String 형 변환 대상 X
 		
 		byte b = 10;
 		int i = b;
