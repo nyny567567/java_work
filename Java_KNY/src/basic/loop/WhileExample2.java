@@ -36,7 +36,7 @@ public class WhileExample2 {
 		//그랬을 때 나누어 떨어지는 애가 약수입니다.
 		
 		int p = 1;
-		int q = 0;
+		int q = 0; //배수의 개수를 기억해 줄 변수.
 		while(p <= 30000) {
 			if(p % 258 == 0) {
 				q++;				
@@ -44,6 +44,8 @@ public class WhileExample2 {
 			
 		}
 		System.out.println(q);
+		
+		
 		
 		int r = 1;
 		int s = 0;
