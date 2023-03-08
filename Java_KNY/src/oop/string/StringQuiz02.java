@@ -41,5 +41,6 @@ public class StringQuiz02 {
 				
 				}
 			}
+		sc.close();
 	}}
 
