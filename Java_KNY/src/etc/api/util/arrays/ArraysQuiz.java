@@ -6,16 +6,21 @@ public class ArraysQuiz {
 
 	public static String solution(String[] participant, String[] completion) {
 	
-	
-		for(int i=0; i<participant.length;i++) {
-			if(Arrays.binarySearch(completion,participant[i])>=0) {
-				continue;
-			} else {
-			return participant[i];
-		}	
+//	Arrays.sort(participant);
+//	Arrays.sort(completion);
+//	for (int i=0; i<completion.length ;i++) {
+//		if(Arrays.binarySearch(completion, participant[i])<0) {
+//			System.out.println(participant[i]);
 			
+		Arrays.sort(participant);
+		Arrays.sort(completion);
+		
+		for(int i=0; i<completion.length; i++) {
+			if(!participant[i].equals(completion[i])){
+				return participant[i];
 		}
-		return "리턴";	
+	}
+		return participant[participant.length-1];
 	}
 			
 	/*
@@ -32,7 +37,7 @@ public class ArraysQuiz {
 		String[] completion = {"홍길동", "김길동", "박영희", "김철수"};
 		
 		
-		System.out.println(solution(participant, completion));
+		System.out.println("완주하지 못한자: " + solution(participant, completion));
 		
 		
 	}
