@@ -70,7 +70,7 @@ public class DateExample {
 	    System.out.println(localDateTime);
 	    
 	    DateTimeFormatter dtf =
-	    		DateTimeFormatter.ofPattern("yyyy년 mm월 dd일 E요일 a jj시 mm분 ss초")
+	    		DateTimeFormatter.ofPattern("yyyy년 mm월 dd일 E요일 a jj시 mm분 ss초");
 	    		
 	    	System.out.println(localDateTime.format(dtf));
 	}
