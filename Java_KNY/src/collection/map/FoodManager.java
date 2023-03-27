@@ -1,9 +1,8 @@
-package collection.map;
+package chap5;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class FoodManager {
 
@@ -31,20 +30,18 @@ public class FoodManager {
 				  를 출력하시고 메인 메뉴로 돌아와 주세요.
 				 - 메뉴 등록 완료 후 'XXX 메뉴가 등록되었습니다.' 를 출력하세요.
 				 */
-				
-				System.out.println("메뉴명을 입력해주세요.");
-				String mn = sc.next();
-				if(foods.containsKey(mn)) {
-					System.out.println("이미 존재하는 메뉴입니다.");
-					continue;
+				System.out.print("메뉴명: ");
+				String name = sc.next();
+				if(foods.containsKey(name)) {
+					System.out.println("이미 등록된 메뉴입니다.");
 				} else {
-					System.out.println("가격을 입력해주세요.");
+					System.out.print("가격: ");
 					int price = sc.nextInt();
-					foods.put(mn, price);
-					System.out.printf("%s 메뉴가 등록되었습니다.\n\n", mn);
-					continue;
-					
+					foods.put(name, price);
+					System.out.printf("%s 음식이 등록되었습니다.\n"
+							, name);
 				}
+				
 				
 			} else if(menu == 2) {
 				/*
@@ -68,84 +65,84 @@ public class FoodManager {
 				   
 				  - 취소: 메인 메뉴로 이동
 				 */
-				if(foods.size()==0) {
-					System.out.println("메뉴부터 먼저 등록해주세요!");
-					continue;
+				if(foods.isEmpty()) {
+					System.out.println("메뉴부터 먼저 등록하고 오세요!");
 				} else {
-					Set<String> menus = foods.keySet();
-					for(String f:menus) {
-						System.out.println(f + " : " +foods.get(f) +"원");
+					System.out.println("---------- 메뉴판 ----------");
+					for(String m : foods.keySet()) {
+						System.out.println(m + " : " + foods.get(m));
 					}
-					System.out.println("수행할 작업을 선택해주세요. 1>수정 2>삭제 3>취소");
-					int work = sc.nextInt();
-					if(work==1) {
-						System.out.println("수정할 메뉴명을 입력해주세요.");
-						String editMenu = sc.next();
-						if(foods.containsKey(editMenu)) {
-							System.out.println("가격을 입력해주세요.");
-							int nPrice = sc.nextInt();
-							foods.put(editMenu, nPrice);
-							System.out.println("수정이 완료되었습니다.");
-							System.out.println("=======================");
-							for(String f:menus) {
-								System.out.println(f + " : " +foods.get(f) +"원");
-								
-							} System.out.println();
+					System.out.println("---------------------------\n");
+					
+					System.out.println("1. 수정 | 2. 삭제 | 3. 취소");
+					System.out.print("> ");
+					int sel = sc.nextInt();
+					
+					switch(sel) {
+					case 1:
+						System.out.println("수정하실 메뉴를 입력하세요");
+						System.out.print("> ");
+						String uMenu = sc.next();
+						if(foods.containsKey(uMenu)) {
+							System.out.print("수정할 가격: ");
+							int newPrice = sc.nextInt();
+							foods.put(uMenu, newPrice);
+							System.out.printf("%s 음식이 %d원으로 변경되었습니다.\n"
+									, uMenu, newPrice);
 						} else {
-							System.out.println("없는 메뉴입니다.");
-							continue;
-						} 
-					}else if (work==2) {
-						System.out.println("삭제할 메뉴명을 입력해주세요.");
-						String delMenu = sc.next();
-						if (foods.containsKey(delMenu)) {
-						foods.remove(delMenu);
-						System.out.println("삭제가 완료되었습니다.");
-						for(String f:menus) {
-							System.out.println(f + " : " +foods.get(f) +"원");
-						} System.out.println();
-						} else {
-							System.out.println("없는 메뉴입니다");
-							continue;
+							System.out.println("존재하지 않는 메뉴입니다.");
 						}
-					} else {
-						System.out.println("메인메뉴로 이동합니다");
-						System.out.println();
-						continue;
+						break;
+						
+					case 2:
+						System.out.println("삭제하실 메뉴를 입력하세요.");
+						System.out.print("> ");
+						String del = sc.next();
+						if(foods.containsKey(del)) {
+							foods.remove(del);
+							System.out.printf("%s 음식이 삭제되었습니다.\n", del);
+						} else {
+							System.out.println("존재하지 않는 음식입니다.");
+						}
+						break;
+						
+					case 3:
+						System.out.println("메인 메뉴로 돌아갑니다.");
+						break;
+						
+					default:
+						System.out.println("메뉴를 잘못 입력하셨습니다.");
+						System.out.println("메인 메뉴로 돌아갑니다.");
 					}
 				}
-					
+				
 			} else if(menu == 3) {
 				 /*
 				  - Y / N를 입력받아서 Y가 입력되면 프로그램 종료.
 				   그 이외의 값은 종료 취소를 진행해 주세요.
 				 */
-				
-				System.out.println("프로그램을 종료하시겠습니까? Y/N");
-				String answer = sc.next().toUpperCase();
-				if (answer.equals("Y")){
-					System.out.println("프로그램을 종료합니다.");
-				 break;
+				System.out.println("프로그램을 종료합니다. [Y/N]");
+				System.out.print("> ");
+				String quit = sc.next();
+				if(quit.toLowerCase().equals("y")) {
+					System.out.println("종료합니다.");
+					sc.close();
+//					break;
+					System.exit(0);
+				} else {
+					System.out.println("종료를 취소합니다.");
+				}
 				
 			} else {
-				System.out.println("종료를 취소합니다.");
-				System.out.println();
-				continue;
-			}
-			}
+				System.out.println("메뉴를 잘못 입력하셨습니다.");
+			}			
 		}
+		
+		
+
 	}
+
 }
-			
-			
-			
-		
-		
-		
-
-	
-
-
 
 
 
